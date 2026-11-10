@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f1b16">
+<title>Programa de Ventas · Lumen Dental</title>
+<link rel="icon" href="data:image/jpeg;base64,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">
+<link rel="apple-touch-icon" href="data:image/jpeg;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Colores de Lumen: dorado champaña + carbón café + crema (del logo) */
+  :root {
+    --bg: #f6f1e7; --card: #fffdf8; --ink: #2a221a; --muted: #7d7062; --line: #e7dcc8;
+    --gold: #b08d4f; --gold-ink: #ffffff; --gold-soft: #f0e5cd; --ok: #2f7d4f; --ok-soft: #e4f2e9;
+    --bad: #b3382c; --bad-soft: #f8e3e0; --warn-soft: #f7ecd2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14100c; --card: #1e1914; --ink: #f1e9dc; --muted: #a8998a; --line: #352c22;
+      --gold: #d2ae6a; --gold-ink: #1a140d; --gold-soft: #2e2517; --ok: #6cc08e; --ok-soft: #1b2e22;
+      --bad: #ec7d70; --bad-soft: #3a1f1b; --warn-soft: #33291a;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.4 Montserrat, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  header { background: linear-gradient(120deg, #120e0a, #2a2017 70%, #3a2c1c); color: #f0e5cd;
+    padding: 12px 16px; padding-top: max(12px, env(safe-area-inset-top)); display: flex; align-items: center; gap: 12px;
+    border-bottom: 2px solid #b08d4f; }
+  header img { width: 42px; height: 45px; border-radius: 8px; flex: none; }
+  header h1 { margin: 0; font: 600 24px/1 "Cormorant Garamond", Georgia, serif; letter-spacing: .14em; color: #e2c27e; }
+  header h1 span { font: 500 11px/1 Montserrat, sans-serif; letter-spacing: .32em; color: #f6efe2; margin-left: 6px; vertical-align: middle; }
+  header p { margin: 4px 0 0; font-size: 12px; color: #c8b89c; }
+  h2 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600; letter-spacing: .01em; }
+  main { max-width: 560px; margin: 0 auto; padding: 16px 16px 110px; }
+  nav { position: fixed; left: 0; right: 0; bottom: 0; background: var(--card); border-top: 1px solid var(--line);
+    display: grid; grid-template-columns: repeat(7, 1fr); padding-bottom: env(safe-area-inset-bottom); z-index: 5; }
+  nav button { background: none; border: 0; padding: 9px 0 10px; color: var(--muted); font: inherit; font-size: 10.5px;
+    display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; }
+  nav button svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+  nav button.on { color: var(--gold); font-weight: 600; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
+  h2 { font-size: 23px; margin: 0 0 4px; }
+  .bars { margin-top: 8px; }
+  .bar { display: grid; grid-template-columns: 74px 1fr auto; gap: 8px; align-items: center; font-size: 13px; margin: 6px 0; }
+  .bar i { display: block; height: 10px; border-radius: 5px; background: var(--gold); min-width: 2px; }
+  .bar i.r { background: var(--ok); height: 6px; margin-top: 2px; }
+  .bar span { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .legend { display: flex; gap: 14px; font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .legend b { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+  .sub { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
+  label { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin: 12px 0 5px; }
+  input, select, textarea { width: 100%; font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line);
+    border-radius: 10px; padding: 11px 12px; min-height: 46px; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--gold); outline-offset: 0; border-color: transparent; }
+  textarea { min-height: 70px; resize: vertical; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .row > div { min-width: 0; }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pills button { border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 999px;
+    padding: 9px 14px; font: inherit; font-size: 14px; cursor: pointer; }
+  .pills button.on { background: var(--gold); border-color: var(--gold); color: var(--gold-ink); font-weight: 600; }
+  .btn { width: 100%; margin-top: 18px; background: var(--gold); color: var(--gold-ink); border: 0; border-radius: 12px;
+    padding: 14px; font: inherit; font-weight: 700; font-size: 16px; cursor: pointer; }
+  .btn:disabled { opacity: .55; }
+  .btn.sec { background: var(--gold-soft); color: var(--ink); font-weight: 600; }
+  .seg { display: grid; grid-template-columns: 1fr 1fr; background: var(--gold-soft); border-radius: 12px; padding: 4px; margin-bottom: 14px; }
+  .seg button { border: 0; background: none; padding: 10px; border-radius: 9px; font: inherit; font-size: 15px; color: var(--ink); cursor: pointer; }
+  .seg button.on { background: var(--card); font-weight: 700; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+  .hint { background: var(--warn-soft); border-radius: 10px; padding: 10px 12px; font-size: 14px; margin-top: 10px; }
+  .total { font-size: 15px; margin-top: 10px; color: var(--muted); }
+  .total b { color: var(--ink); }
+  .debts { margin-top: 6px; }
+  .debt { display: flex; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 10px; margin-top: 8px; cursor: pointer; background: var(--bg); }
+  .debt.on { border-color: var(--gold); background: var(--gold-soft); }
+  .debt small { color: var(--muted); display: block; }
+  .debt b { white-space: nowrap; }
+  .photo { margin-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .photo label.pick { margin: 0; display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px;
+    border: 1.5px dashed var(--gold); border-radius: 12px; color: var(--ink); font-size: 14px; cursor: pointer; background: var(--gold-soft); }
+  .photo input { display: none; }
+  .preview { margin-top: 10px; position: relative; }
+  .preview img { width: 100%; max-height: 320px; object-fit: contain; border-radius: 10px; border: 1px solid var(--line); background: #000; }
+  .preview button { position: absolute; top: 8px; right: 8px; border: 0; border-radius: 999px; padding: 6px 12px;
+    background: rgba(0,0,0,.65); color: #fff; font: inherit; font-size: 13px; cursor: pointer; }
+  .big { font-size: 34px; font-weight: 800; letter-spacing: -.01em; margin: 2px 0; font-variant-numeric: tabular-nums; }
+  .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .kpi { background: var(--bg); border-radius: 10px; padding: 10px 12px; }
+  .kpi small { display: block; color: var(--muted); font-size: 12px; }
+  .kpi b { font-size: 17px; font-variant-numeric: tabular-nums; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  td { padding: 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td.v { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; padding-left: 10px; }
+  td small { color: var(--muted); display: block; }
+  .in { color: var(--ok); } .out { color: var(--bad); }
+  .diff-ok { background: var(--ok-soft); } .diff-bad { background: var(--bad-soft); }
+  .toast { position: fixed; left: 16px; right: 16px; bottom: 84px; max-width: 528px; margin: 0 auto; padding: 14px 16px;
+    border-radius: 12px; font-size: 15px; z-index: 20; box-shadow: 0 6px 24px rgba(0,0,0,.18); display: none; }
+  .toast.ok { background: var(--ok-soft); color: var(--ink); border: 1px solid var(--ok); }
+  .toast.bad { background: var(--bad-soft); color: var(--ink); border: 1px solid var(--bad); }
+  .modal { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: none; align-items: flex-end; justify-content: center; z-index: 30; }
+  .modal .box { background: var(--card); width: 100%; max-width: 560px; border-radius: 18px 18px 0 0; padding: 20px 16px;
+    padding-bottom: max(20px, env(safe-area-inset-bottom)); }
+  .modal ul { padding-left: 18px; margin: 10px 0 0; }
+  .modal li { margin: 4px 0; }
+  .modal .row { margin-top: 6px; }
+  .modal .btn { margin-top: 12px; }
+  .loading { text-align: center; color: var(--muted); padding: 40px 0; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<header>
+  <img src="data:image/jpeg;base64,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" alt="Lumen Dental">
+  <div><h1>LUMEN<span>DENTAL</span></h1><p id="hdr">Programa de ventas</p></div>
+</header>
+
+<main>
+  <div id="cargando" class="loading">Cargando datos del consultorio…</div>
+
+  <!-- VENTA -->
+  <section id="t-venta" class="tab hidden">
+    <div class="card">
+      <h2>Nueva venta</h2>
+      <p class="sub">Tratamiento que se le hizo al paciente y lo que pagó hoy.</p>
+      <div class="row">
+        <div><label for="v-fecha">Fecha</label><input id="v-fecha" type="date"></div>
+        <div><label for="v-abono">Abono (pagó hoy)</label><input id="v-abono" inputmode="numeric" placeholder="$0" data-money></div>
+      </div>
+      <label for="v-paciente">Nombre del paciente</label>
+      <input id="v-paciente" list="l-pacientes" autocomplete="off" placeholder="Escribe el nombre">
+      <div id="v-debe" class="hint hidden"></div>
+      <label for="v-servicio">Tratamiento</label>
+      <select id="v-servicio"></select>
+      <input id="v-servicio-otro" class="hidden" placeholder="Escribe el tratamiento" style="margin-top:8px">
+      <label for="v-valor">Valor del tratamiento</label>
+      <input id="v-valor" inputmode="numeric" placeholder="$0" data-money>
+      <div id="v-saldo" class="total"></div>
+      <label>Forma de pago</label>
+      <div class="pills" id="v-forma"></div>
+      <label for="v-notas">Notas (opcional)</label>
+      <input id="v-notas" placeholder="Ej: primera cita, control">
+      <button class="btn" id="v-btn">Guardar venta</button>
+    </div>
+  </section>
+
+  <!-- ABONO -->
+  <section id="t-abono" class="tab hidden">
+    <div class="card">
+      <h2>Abono de paciente</h2>
+      <p class="sub">El paciente paga algo que ya debía.</p>
+      <label for="a-paciente">Paciente que debe</label>
+      <select id="a-paciente"></select>
+      <div id="a-deudas" class="debts"></div>
+      <div class="row">
+        <div><label for="a-fecha">Fecha</label><input id="a-fecha" type="date"></div>
+        <div><label for="a-monto">Valor del abono</label><input id="a-monto" inputmode="numeric" placeholder="$0" data-money></div>
+      </div>
+      <div id="a-queda" class="total"></div>
+      <label>Forma de pago</label>
+      <div class="pills" id="a-forma"></div>
+      <label for="a-notas">Notas (opcional)</label>
+      <input id="a-notas">
+      <button class="btn" id="a-btn">Guardar abono</button>
+    </div>
+  </section>
+
+  <!-- PROVEEDORES -->
+  <section id="t-prov" class="tab hidden">
+    <div class="seg" id="p-seg" style="grid-template-columns:1fr 1fr 1fr"><button data-p="p-debo" class="on">Lo que debo</button><button data-p="p-fact">Llegó factura</button><button data-p="p-pago">Pagar</button></div>
+    <div id="p-debo"></div>
+    <div class="card hidden" id="p-fact">
+      <h2>Factura de proveedor</h2>
+      <p class="sub">Lo que quedamos debiendo. Toma la foto de la factura.</p>
+      <label>Foto de la factura</label>
+      <div class="photo">
+        <label class="pick" for="f-cam">📷 Tomar foto</label><input id="f-cam" type="file" accept="image/*" capture="environment">
+        <label class="pick" for="f-gal">🖼️ Galería</label><input id="f-gal" type="file" accept="image/*">
+      </div>
+      <div id="f-prev" class="preview hidden"><img id="f-img" alt="Foto de la factura"><button id="f-quitar">Quitar</button></div>
+      <div id="f-leida" class="hint hidden"></div>
+      <label for="f-prov">Proveedor</label>
+      <select id="f-prov"></select>
+      <div class="row">
+        <div><label for="f-num">N° de factura</label><input id="f-num" placeholder="FE0700"></div>
+        <div><label for="f-valor">Valor</label><input id="f-valor" inputmode="numeric" placeholder="$0" data-money></div>
+      </div>
+      <label for="f-fecha">Fecha de la factura</label>
+      <input id="f-fecha" type="date">
+      <p class="sub" style="margin-top:8px">La fecha de vencimiento sale sola con el plazo del proveedor.</p>
+      <button class="btn" id="f-btn">Guardar factura</button>
+    </div>
+    <div class="card hidden" id="p-pago">
+      <h2>Pago a proveedor</h2>
+      <p class="sub">Se descuenta solo de las facturas, de la que vence primero.</p>
+      <label for="pp-prov">Proveedor</label>
+      <select id="pp-prov"></select>
+      <div id="pp-debe" class="total"></div>
+      <div class="row">
+        <div><label for="pp-fecha">Fecha</label><input id="pp-fecha" type="date"></div>
+        <div><label for="pp-monto">Valor pagado</label><input id="pp-monto" inputmode="numeric" placeholder="$0" data-money></div>
+      </div>
+      <label>Forma de pago</label>
+      <div class="pills" id="pp-forma"></div>
+      <label for="pp-notas">Notas (opcional)</label>
+      <input id="pp-notas">
+      <button class="btn" id="pp-btn">Guardar pago</button>
+    </div>
+  </section>
+
+  <!-- GASTO -->
+  <section id="t-gasto" class="tab hidden">
+    <div class="card">
+      <h2>Gasto</h2>
+      <p class="sub">Aseo, insumos, servicios, gastos personales… (los pagos con factura van en Proveedores).</p>
+      <label for="g-cat">Categoría</label>
+      <select id="g-cat"></select>
+      <label for="g-desc">Descripción</label>
+      <input id="g-desc" placeholder="Ej: guantes y jabón">
+      <div class="row">
+        <div><label for="g-fecha">Fecha</label><input id="g-fecha" type="date"></div>
+        <div><label for="g-valor">Valor</label><input id="g-valor" inputmode="numeric" placeholder="$0" data-money></div>
+      </div>
+      <label>Forma de pago</label>
+      <div class="pills" id="g-forma"></div>
+      <button class="btn" id="g-btn">Guardar gasto</button>
+    </div>
+  </section>
+
+  <!-- BUSCAR PACIENTE -->
+  <section id="t-buscar" class="tab hidden">
+    <div class="card">
+      <h2>Buscar paciente</h2>
+      <p class="sub">Todo lo que se le ha hecho, lo que ha pagado y lo que debe.</p>
+      <div class="row" style="grid-template-columns:1fr auto">
+        <input id="b-txt" placeholder="Nombre del paciente" autocomplete="off" enterkeyhint="search">
+        <button class="btn" id="b-btn" style="margin:0;width:auto;padding:0 18px">Buscar</button>
+      </div>
+    </div>
+    <div id="b-res"></div>
+  </section>
+
+  <!-- RESUMEN EJECUTIVO -->
+  <section id="t-resumen" class="tab hidden">
+    <div class="card">
+      <h2>Resumen</h2>
+      <p class="sub">Escoge desde qué fecha hasta qué fecha.</p>
+      <div class="row">
+        <div><label for="r-desde">Desde</label><input id="r-desde" type="date"></div>
+        <div><label for="r-hasta">Hasta</label><input id="r-hasta" type="date"></div>
+      </div>
+      <div class="pills" id="r-rapidos" style="margin-top:12px">
+        <button type="button" data-r="hoy">Hoy</button><button type="button" data-r="semana">Esta semana</button>
+        <button type="button" data-r="mes">Este mes</button><button type="button" data-r="pasado">Mes pasado</button><button type="button" data-r="ano">Este año</button>
+      </div>
+      <button class="btn" id="r-btn">Ver resumen</button>
+    </div>
+    <div id="r-res"></div>
+  </section>
+
+  <!-- CAJA -->
+  <section id="t-caja" class="tab hidden">
+    <div class="card">
+      <div class="row" style="align-items:end">
+        <div><h2>Caja</h2><p class="sub" style="margin:0">Lo que debe haber en efectivo.</p></div>
+        <div><input id="c-fecha" type="date"></div>
+      </div>
+    </div>
+    <div id="c-body"><div class="loading">Calculando…</div></div>
+  </section>
+</main>
+
+<datalist id="l-pacientes"></datalist>
+
+<nav>
+  <button data-t="venta"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Venta</button>
+  <button data-t="abono"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg>Abono</button>
+  <button data-t="prov"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 10h6M9 14h6M9 18h4"/></svg>Proveedor</button>
+  <button data-t="gasto"><svg viewBox="0 0 24 24"><path d="M12 3v18M17 7H9.5a3 3 0 0 0 0 6h5a3 3 0 0 1 0 6H6"/></svg>Gasto</button>
+  <button data-t="resumen"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Resumen</button>
+  <button data-t="buscar"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg>Buscar</button>
+  <button data-t="caja"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M3 11h18M8 7V4h8v3"/></svg>Caja</button>
+</nav>
+
+<div class="toast" id="toast"></div>
+<div class="modal" id="modal"><div class="box">
+  <h2 id="m-tit">¿Lo guardo?</h2>
+  <ul id="m-list"></ul>
+  <div class="row"><button class="btn sec" id="m-no">Corregir</button><button class="btn" id="m-si">Sí, guardar</button></div>
+</div></div>
+
+<script>
+// URL del backend (Apps Script, aplicación web)
+const API = 'https://script.google.com/macros/s/AKfycbyP8KE9rJ4_8DOBNP_y4P6wEdpXV_9_EPQ08lQU5ycZ5M8o5tLBjO2QSzlucoyPJhnIlw/exec';
+
+let D = null;              // datos del consultorio (listas, deudas)
+let foto = null;           // {data, mime} de la factura
+const $ = id => document.getElementById(id);
+const fmt = n => '$' + Math.round(Number(n) || 0).toLocaleString('es-CO');
+const money = el => Number(String(el.value).replace(/\D/g, '')) || 0;
+const norm = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, ' ').trim();
+const fechaTxt = s => s ? s.split('-').reverse().join('/') : '';
+
+async function api(accion, datos) {
+  const r = await fetch(API, { method: 'POST', body: JSON.stringify({ accion, datos }) });
+  const j = await r.json();
+  if (!j.ok) throw new Error(j.error || 'Error');
+  return j.data;
+}
+
+function toast(msg, ok = true) {
+  const t = $('toast');
+  t.textContent = msg; t.className = 'toast ' + (ok ? 'ok' : 'bad'); t.style.display = 'block';
+  clearTimeout(t._h); t._h = setTimeout(() => t.style.display = 'none', ok ? 6000 : 9000);
+}
+
+function confirmar(titulo, lineas) {
+  return new Promise(res => {
+    $('m-tit').textContent = titulo;
+    $('m-list').innerHTML = lineas.filter(Boolean).map(l => '<li>' + esc(l) + '</li>').join('');
+    $('modal').style.display = 'flex';
+    $('m-si').onclick = () => { $('modal').style.display = 'none'; res(true); };
+    $('m-no').onclick = () => { $('modal').style.display = 'none'; res(false); };
+  });
+}
+
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+
+// Botones de forma de pago
+function pills(id) {
+  const box = $(id);
+  box.innerHTML = D.formas.map(f => `<button type="button" data-f="${f}">${f}</button>`).join('');
+  box.onclick = e => {
+    const b = e.target.closest('button'); if (!b) return;
+    box.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+  };
+}
+const formaDe = id => ($(id).querySelector('button.on') || {}).dataset?.f || '';
+const limpiarForma = id => $(id).querySelectorAll('button').forEach(x => x.classList.remove('on'));
+
+// Formato de pesos mientras se escribe
+document.addEventListener('input', e => {
+  if (!e.target.matches('[data-money]')) return;
+  const n = money(e.target);
+  e.target.value = n ? fmt(n) : '';
+});
+
+// ---------- pestañas ----------
+function tab(t) {
+  document.querySelectorAll('.tab').forEach(s => s.classList.toggle('hidden', s.id !== 't-' + t));
+  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.t === t));
+  try { localStorage.setItem('lumen-tab', t); } catch (e) {}
+  if (t === 'caja') cargarCaja();
+  window.scrollTo(0, 0);
+}
+document.querySelectorAll('nav button').forEach(b => b.onclick = () => tab(b.dataset.t));
+
+// ---------- datos ----------
+async function cargar() {
+  D = await api('datos');
+  $('l-pacientes').innerHTML = D.pacientes.map(p => `<option value="${esc(p)}">`).join('');
+  $('v-servicio').innerHTML = '<option value="">Escoge el tratamiento</option>' +
+    D.servicios.map(s => `<option>${esc(s)}</option>`).join('') + '<option value="__otro">Otro (escribirlo)</option>';
+  const provs = '<option value="">Escoge el proveedor</option>' + D.proveedores.map(p => `<option>${esc(p)}</option>`).join('');
+  $('f-prov').innerHTML = provs; $('pp-prov').innerHTML = provs;
+  $('g-cat').innerHTML = '<option value="">Escoge la categoría</option>' +
+    D.categorias.map(c => `<option value="${esc(c.nombre)}">${esc(c.nombre)}${c.grupo === 'Personal / retiro' ? ' (personal)' : ''}</option>`).join('');
+  const quien = {};
+  D.deudas.forEach(d => { const k = norm(d.paciente); quien[k] = quien[k] || { nombre: d.paciente, total: 0 }; quien[k].total += d.saldo; });
+  $('a-paciente').innerHTML = '<option value="">Escoge el paciente</option>' +
+    Object.values(quien).sort((a, b) => a.nombre.localeCompare(b.nombre))
+      .map(q => `<option value="${esc(q.nombre)}">${esc(q.nombre)} · debe ${fmt(q.total)}</option>`).join('');
+  ['v-forma', 'a-forma', 'pp-forma', 'g-forma'].forEach(pills);
+  if (!$('r-desde').value) { $('r-desde').value = D.hoy.slice(0, 8) + '01'; $('r-hasta').value = D.hoy; }
+  ['v-fecha', 'a-fecha', 'f-fecha', 'pp-fecha', 'g-fecha', 'c-fecha'].forEach(id => { if (!$(id).value) $(id).value = D.hoy; });
+  $('hdr').textContent = 'Hoy ' + fechaTxt(D.hoy) + ' · ' + D.deudas.length + ' tratamientos con saldo';
+  pintarDeudas();
+  pintarDebo();
+}
+
+// ---------- venta ----------
+$('v-servicio').onchange = () => $('v-servicio-otro').classList.toggle('hidden', $('v-servicio').value !== '__otro');
+function saldoVenta() {
+  const v = money($('v-valor')), a = money($('v-abono'));
+  $('v-saldo').innerHTML = v ? (a > v ? '<b class="out">El abono es mayor que el valor.</b>'
+    : v - a > 0 ? `Queda debiendo <b>${fmt(v - a)}</b>` : '<b class="in">Queda PAGADO</b>') : '';
+}
+$('v-valor').addEventListener('input', saldoVenta); $('v-abono').addEventListener('input', saldoVenta);
+$('v-paciente').addEventListener('input', () => {
+  const n = norm($('v-paciente').value);
+  const ds = D.deudas.filter(d => norm(d.paciente) === n);
+  const tot = ds.reduce((s, d) => s + d.saldo, 0);
+  $('v-debe').classList.toggle('hidden', !tot);
+  $('v-debe').innerHTML = tot ? `Este paciente ya debe <b>${fmt(tot)}</b>. Si viene a pagar eso, usa <a href="#" id="ir-abono">Abono</a>.` : '';
+  const ir = $('ir-abono');
+  if (ir) ir.onclick = e => { e.preventDefault(); $('a-paciente').value = ds[0].paciente; pintarDeudas(); tab('abono'); };
+});
+$('v-btn').onclick = async () => {
+  const servicio = $('v-servicio').value === '__otro' ? $('v-servicio-otro').value.trim() : $('v-servicio').value;
+  const d = { fecha: $('v-fecha').value, paciente: $('v-paciente').value.trim(), servicio,
+    valor: money($('v-valor')), abono: money($('v-abono')), forma: formaDe('v-forma'), notas: $('v-notas').value };
+  if (!d.paciente) return toast('Falta el nombre del paciente.', false);
+  if (!d.servicio) return toast('Falta el tratamiento.', false);
+  if (!d.valor) return toast('Falta el valor del tratamiento.', false);
+  if (d.abono > d.valor) return toast('El abono es mayor que el valor.', false);
+  if (d.abono > 0 && !d.forma) return toast('Escoge la forma de pago.', false);
+  const nuevo = !D.pacientes.some(p => norm(p) === norm(d.paciente));
+  const ok = await confirmar('¿Guardo esta venta?', [
+    fechaTxt(d.fecha) + ' · ' + d.paciente + (nuevo ? ' (paciente nuevo)' : ''),
+    d.servicio + ' · ' + fmt(d.valor),
+    'Pagó ' + fmt(d.abono) + (d.forma ? ' en ' + d.forma : ''),
+    d.valor - d.abono > 0 ? 'Queda debiendo ' + fmt(d.valor - d.abono) : 'Queda PAGADO'
+  ]);
+  if (!ok) return;
+  await enviar('v-btn', 'venta', d, () => {
+    ['v-paciente', 'v-valor', 'v-abono', 'v-notas', 'v-servicio-otro'].forEach(id => $(id).value = '');
+    $('v-servicio').value = ''; $('v-servicio-otro').classList.add('hidden');
+    $('v-saldo').textContent = ''; $('v-debe').classList.add('hidden'); limpiarForma('v-forma');
+  });
+};
+
+// ---------- abono ----------
+let filaAbono = null;
+function pintarDeudas() {
+  const n = norm($('a-paciente').value);
+  const ds = D.deudas.filter(d => norm(d.paciente) === n).sort((a, b) => a.fecha.localeCompare(b.fecha));
+  filaAbono = null;
+  $('a-deudas').innerHTML = ds.length ? '<label>Qué debe (toca uno si el abono es solo para ese)</label>' + ds.map(d =>
+    `<div class="debt" data-fila="${d.fila}"><div>${esc(d.servicio)}<small>${fechaTxt(d.fecha)}</small></div><b>${fmt(d.saldo)}</b></div>`).join('') : '';
+  $('a-deudas').querySelectorAll('.debt').forEach(el => el.onclick = () => {
+    const on = !el.classList.contains('on');
+    $('a-deudas').querySelectorAll('.debt').forEach(x => x.classList.remove('on'));
+    el.classList.toggle('on', on); filaAbono = on ? Number(el.dataset.fila) : null; quedaAbono();
+  });
+  quedaAbono();
+}
+function quedaAbono() {
+  const n = norm($('a-paciente').value);
+  const ds = D.deudas.filter(d => norm(d.paciente) === n && (!filaAbono || d.fila === filaAbono));
+  const tot = ds.reduce((s, d) => s + d.saldo, 0), m = money($('a-monto'));
+  $('a-queda').innerHTML = !tot ? '' : m > tot ? '<b class="out">El abono es mayor que lo que debe (' + fmt(tot) + ').</b>'
+    : m ? `Después de este abono queda debiendo <b>${fmt(tot - m)}</b>` : `Debe <b>${fmt(tot)}</b>`;
+}
+$('a-paciente').onchange = pintarDeudas;
+$('a-monto').addEventListener('input', quedaAbono);
+$('a-btn').onclick = async () => {
+  const d = { paciente: $('a-paciente').value, fila: filaAbono, fecha: $('a-fecha').value, monto: money($('a-monto')),
+    forma: formaDe('a-forma'), notas: $('a-notas').value };
+  if (!d.paciente) return toast('Escoge el paciente.', false);
+  if (!d.monto) return toast('Falta el valor del abono.', false);
+  if (!d.forma) return toast('Escoge la forma de pago.', false);
+  const ds = D.deudas.filter(x => norm(x.paciente) === norm(d.paciente) && (!d.fila || x.fila === d.fila));
+  const tot = ds.reduce((s, x) => s + x.saldo, 0);
+  if (d.monto > tot) return toast('El abono es mayor que lo que debe (' + fmt(tot) + ').', false);
+  const ok = await confirmar('¿Guardo este abono?', [
+    fechaTxt(d.fecha) + ' · ' + d.paciente, fmt(d.monto) + ' en ' + d.forma,
+    d.fila ? 'Solo a: ' + ds[0].servicio : 'Se descuenta de lo más viejo a lo más nuevo',
+    'Queda debiendo ' + fmt(tot - d.monto)
+  ]);
+  if (!ok) return;
+  await enviar('a-btn', 'abono', d, () => {
+    ['a-monto', 'a-notas'].forEach(id => $(id).value = ''); $('a-paciente').value = ''; limpiarForma('a-forma');
+  });
+};
+
+// ---------- proveedores ----------
+$('p-seg').onclick = e => {
+  const b = e.target.closest('button'); if (!b) return;
+  $('p-seg').querySelectorAll('button').forEach(x => { x.classList.toggle('on', x === b); $(x.dataset.p).classList.toggle('hidden', x !== b); });
+};
+
+// Lo que debo a cada proveedor y sus facturas pendientes (de la que vence primero)
+function pintarDebo() {
+  const hoy = D.hoy, porProv = {};
+  // Totales por proveedor sumando sus facturas pendientes (asi cuadra con el total)
+  D.facturasPend.forEach(f => {
+    const p = porProv[f.proveedor] = porProv[f.proveedor] || { proveedor: f.proveedor, debe: 0, vencido: 0, facturas: [] };
+    p.debe += f.saldo; if (f.vence && f.vence < hoy) p.vencido += f.saldo; p.facturas.push(f);
+  });
+  const provs = Object.values(porProv).sort((a, b) => b.debe - a.debe);
+  const total = provs.reduce((s, p) => s + p.debe, 0), vencido = provs.reduce((s, p) => s + p.vencido, 0);
+  let h = `<div class="card"><small class="sub">Le debo a proveedores · ${D.facturasPend.length} facturas</small><div class="big">${fmt(total)}</div>
+    <div class="kpis" style="margin-top:10px">
+      <div class="kpi"><small>Ya vencido</small><b class="${vencido ? 'out' : 'in'}">${fmt(vencido)}</b></div>
+      <div class="kpi"><small>Por vencer</small><b>${fmt(total - vencido)}</b></div></div></div>`;
+  h += provs.map(p => `<div class="card">
+      <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline">
+        <h2 style="font-size:20px">${esc(p.proveedor)}</h2><b style="font-size:19px;white-space:nowrap">${fmt(p.debe)}</b></div>
+      <div class="sub" style="margin:0 0 4px">${p.facturas.length} ${p.facturas.length === 1 ? 'factura' : 'facturas'}${p.vencido ? ` · <span class="out">vencido ${fmt(p.vencido)}</span>` : ' · nada vencido'}</div>
+      <table>${p.facturas.sort((a, b) => (a.vence || '').localeCompare(b.vence || '')).map(f => {
+        const venc = f.vence && f.vence < hoy;
+        return `<tr><td><b>N° ${esc(f.numero)}</b>
+          <small>Fecha: ${fechaTxt(f.fecha)}</small>
+          <small class="${venc ? 'out' : ''}">${venc ? 'Venció' : 'Vence'}: ${fechaTxt(f.vence)}${venc ? ' ⚠' : ''}</small></td>
+          <td class="v"><b>${fmt(f.saldo)}</b>${f.saldo < f.valor ? `<small>abonado ${fmt(f.valor - f.saldo)} de ${fmt(f.valor)}</small>` : `<small>valor ${fmt(f.valor)}</small>`}</td></tr>`;
+      }).join('')}</table>
+      <button class="btn sec" data-pagar="${esc(p.proveedor)}">Pagar a este proveedor</button></div>`).join('')
+    || '<div class="card">No le debes nada a ningún proveedor.</div>';
+  $('p-debo').innerHTML = h;
+  $('p-debo').querySelectorAll('[data-pagar]').forEach(b => b.onclick = () => {
+    $('p-seg').querySelector('[data-p="p-pago"]').click();
+    $('pp-prov').value = b.dataset.pagar; $('pp-prov').onchange();
+  });
+}
+
+// La foto se achica antes de subirla (máx. 1600 px, JPG)
+function achicar(file) {
+  return new Promise((ok, mal) => {
+    const img = new Image();
+    img.onload = () => {
+      const s = Math.min(1, 1600 / Math.max(img.width, img.height));
+      const c = document.createElement('canvas');
+      c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(img.src);
+      ok(c.toDataURL('image/jpeg', 0.82));
+    };
+    img.onerror = () => mal(new Error('No pude leer la foto.'));
+    img.src = URL.createObjectURL(file);
+  });
+}
+async function tomarFoto(e) {
+  const f = e.target.files[0]; e.target.value = '';
+  if (!f) return;
+  try {
+    const url = await achicar(f);
+    foto = { data: url.split(',')[1], mime: 'image/jpeg' };
+    $('f-img').src = url; $('f-prev').classList.remove('hidden');
+  } catch (err) { return toast(err.message, false); }
+  // Lee la factura: N°, proveedor, fecha y total. Lo que no encuentre se llena a mano.
+  const aviso = $('f-leida');
+  aviso.classList.remove('hidden'); aviso.textContent = 'Leyendo la factura…';
+  $('f-btn').disabled = true;
+  try {
+    const r = await api('leerFactura', { foto });
+    const leido = [];
+    if (r.numero) { $('f-num').value = r.numero; leido.push('N° ' + r.numero); }
+    if (r.valor) { $('f-valor').value = fmt(r.valor); leido.push('total ' + fmt(r.valor)); }
+    if (r.proveedor && D.proveedores.includes(r.proveedor)) { $('f-prov').value = r.proveedor; leido.push(r.proveedor); }
+    if (r.fecha) { $('f-fecha').value = r.fecha; leido.push('fecha ' + fechaTxt(r.fecha)); }
+    aviso.innerHTML = leido.length ? '<b>Leí de la foto:</b> ' + esc(leido.join(' · ')) + '. Revisa que esté bien antes de guardar.'
+      : 'No pude leer los datos de la foto. Llénalos a mano (la foto sí se guarda).';
+  } catch (err) {
+    aviso.textContent = 'No pude leer la foto (' + err.message + '). Llena los datos a mano; la foto sí se guarda.';
+  } finally { $('f-btn').disabled = false; }
+}
+$('f-cam').onchange = tomarFoto; $('f-gal').onchange = tomarFoto;
+$('f-quitar').onclick = () => { foto = null; $('f-prev').classList.add('hidden'); $('f-leida').classList.add('hidden'); $('f-img').removeAttribute('src'); };
+
+$('f-btn').onclick = async () => {
+  const d = { fecha: $('f-fecha').value, proveedor: $('f-prov').value, numero: $('f-num').value.trim(), valor: money($('f-valor')), foto };
+  if (!d.proveedor) return toast('Escoge el proveedor.', false);
+  if (!d.numero) return toast('Falta el número de factura.', false);
+  if (!d.valor) return toast('Falta el valor de la factura.', false);
+  const ok = await confirmar('¿Guardo esta factura?', [
+    d.proveedor, 'N° ' + d.numero + ' · ' + fmt(d.valor), 'Fecha ' + fechaTxt(d.fecha), foto ? 'Con foto' : 'Sin foto'
+  ]);
+  if (!ok) return;
+  await enviar('f-btn', 'factura', d, () => {
+    ['f-num', 'f-valor'].forEach(id => $(id).value = ''); $('f-prov').value = ''; $('f-quitar').click();
+  });
+};
+
+const deboA = prov => D.facturasPend.filter(f => f.proveedor === prov).reduce((s, f) => s + f.saldo, 0);
+$('pp-prov').onchange = () => {
+  $('pp-debe').innerHTML = $('pp-prov').value ? `Le debo <b>${fmt(deboA($('pp-prov').value))}</b>` : '';
+};
+$('pp-btn').onclick = async () => {
+  const d = { fecha: $('pp-fecha').value, proveedor: $('pp-prov').value, monto: money($('pp-monto')), forma: formaDe('pp-forma'), notas: $('pp-notas').value };
+  if (!d.proveedor) return toast('Escoge el proveedor.', false);
+  if (!d.monto) return toast('Falta el valor pagado.', false);
+  if (!d.forma) return toast('Escoge la forma de pago.', false);
+  const debe = deboA(d.proveedor);
+  const ok = await confirmar('¿Guardo este pago?', [
+    fechaTxt(d.fecha) + ' · ' + d.proveedor, fmt(d.monto) + ' en ' + d.forma,
+    d.monto > debe ? '⚠ Es más de lo que le debo (' + fmt(debe) + ')' : 'Le quedo debiendo ' + fmt(debe - d.monto)
+  ]);
+  if (!ok) return;
+  await enviar('pp-btn', 'pagoProveedor', d, () => {
+    ['pp-monto', 'pp-notas'].forEach(id => $(id).value = ''); $('pp-prov').value = ''; $('pp-debe').textContent = ''; limpiarForma('pp-forma');
+  });
+};
+
+// ---------- gasto ----------
+$('g-btn').onclick = async () => {
+  const d = { fecha: $('g-fecha').value, categoria: $('g-cat').value, descripcion: $('g-desc').value.trim(), valor: money($('g-valor')), forma: formaDe('g-forma') };
+  if (!d.categoria) return toast('Escoge la categoría.', false);
+  if (!d.valor) return toast('Falta el valor del gasto.', false);
+  if (!d.forma) return toast('Escoge la forma de pago.', false);
+  const ok = await confirmar('¿Guardo este gasto?', [fechaTxt(d.fecha) + ' · ' + d.categoria, d.descripcion, fmt(d.valor) + ' en ' + d.forma]);
+  if (!ok) return;
+  await enviar('g-btn', 'gasto', d, () => {
+    ['g-desc', 'g-valor'].forEach(id => $(id).value = ''); $('g-cat').value = ''; limpiarForma('g-forma');
+  });
+};
+
+async function enviar(btn, accion, datos, limpiar) {
+  const b = $(btn), txt = b.textContent;
+  b.disabled = true; b.textContent = 'Guardando…';
+  try {
+    const r = await api(accion, datos);
+    toast('✓ ' + r.mensaje);
+    limpiar();
+    cargar().catch(() => {});
+  } catch (err) {
+    toast('No se guardó: ' + err.message, false);
+  } finally {
+    b.disabled = false; b.textContent = txt;
+  }
+}
+
+// ---------- buscar paciente ----------
+async function buscar() {
+  const t = $('b-txt').value.trim();
+  if (t.length < 2) return toast('Escribe al menos 2 letras del nombre.', false);
+  $('b-res').innerHTML = '<div class="loading">Buscando…</div>';
+  try {
+    const ps = await api('paciente', { texto: t });
+    $('b-res').innerHTML = ps.length ? ps.map(p => `<div class="card">
+      <h2 style="font-size:18px">${esc(p.nombre)}</h2>
+      <div class="kpis" style="margin:10px 0">
+        <div class="kpi"><small>Tratamientos</small><b>${fmt(p.facturado)}</b></div>
+        <div class="kpi"><small>Ha pagado</small><b class="in">${fmt(p.pagado)}</b></div>
+        <div class="kpi" style="grid-column:1/-1"><small>Debe hoy</small><b class="${p.debe > 0 ? 'out' : 'in'}">${p.debe > 0 ? fmt(p.debe) : 'Nada, está al día'}</b></div>
+      </div>
+      <table>${p.movimientos.map(m => `<tr><td>${m.abono_de ? 'Abono · ' : ''}${esc(m.servicio)}<small>${fechaTxt(m.fecha)}${m.forma ? ' · ' + esc(m.forma) : ''}${m.saldo > 0 ? ' · debe ' + fmt(m.saldo) : ''}</small></td>
+        <td class="v">${m.valor ? fmt(m.valor) : ''}${m.abono ? `<small class="in">pagó ${fmt(m.abono)}</small>` : ''}</td></tr>`).join('')}</table>
+      ${p.debe > 0 ? `<button class="btn sec" data-abonar="${esc(p.nombre)}">Registrar abono</button>` : ''}
+    </div>`).join('') : '<div class="card">No encontré pacientes con ese nombre.</div>';
+    $('b-res').querySelectorAll('[data-abonar]').forEach(b => b.onclick = () => {
+      $('a-paciente').value = b.dataset.abonar; pintarDeudas(); tab('abono');
+    });
+  } catch (err) { $('b-res').innerHTML = '<div class="card">No pude buscar: ' + esc(err.message) + '</div>'; }
+}
+$('b-btn').onclick = buscar;
+$('b-txt').addEventListener('keydown', e => { if (e.key === 'Enter') buscar(); });
+
+// ---------- resumen ejecutivo ----------
+const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+$('r-rapidos').onclick = e => {
+  const b = e.target.closest('button'); if (!b) return;
+  const h = new Date(D.hoy + 'T12:00'), y = h.getFullYear(), m = h.getMonth();
+  const rangos = {
+    hoy: [h, h],
+    semana: [new Date(y, m, h.getDate() - ((h.getDay() + 6) % 7)), h],
+    mes: [new Date(y, m, 1), h],
+    pasado: [new Date(y, m - 1, 1), new Date(y, m, 0)],
+    ano: [new Date(y, 0, 1), h]
+  }[b.dataset.r];
+  $('r-desde').value = ymd(rangos[0]); $('r-hasta').value = ymd(rangos[1]);
+  $('r-rapidos').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+  verResumen();
+};
+$('r-btn').onclick = verResumen;
+const mesTxt = s => ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'][Number(s.slice(5, 7)) - 1] + ' ' + s.slice(2, 4);
+async function verResumen() {
+  if (!$('r-desde').value || !$('r-hasta').value) return toast('Escoge las dos fechas.', false);
+  $('r-res').innerHTML = '<div class="loading">Calculando…</div>';
+  try {
+    const r = await api('resumen', { desde: $('r-desde').value, hasta: $('r-hasta').value });
+    const kpi = (t, v, cls = '') => `<div class="kpi"><small>${t}</small><b class="${cls}">${v}</b></div>`;
+    const lista = (obj, total) => Object.entries(obj).sort((a, b) => (b[1].valor ?? b[1]) - (a[1].valor ?? a[1])).map(([k, v]) =>
+      `<tr><td>${esc(k)}${v.n ? `<small>${v.n} ${v.n === 1 ? 'vez' : 'veces'}</small>` : ''}</td><td class="v">${fmt(v.valor ?? v)}${total ? `<small>${Math.round((v.valor ?? v) / total * 100)}%</small>` : ''}</td></tr>`).join('');
+    const serie = Object.entries(r.serie).sort();
+    const max = Math.max(1, ...serie.map(([, s]) => Math.max(s.vendido, s.recibido)));
+    let h = `<div class="card"><small class="sub">Del ${fechaTxt(r.desde)} al ${fechaTxt(r.hasta)}</small>
+      <div class="kpis" style="margin-top:10px">
+        ${kpi('Vendido (tratamientos)', fmt(r.facturado))}${kpi('Recibido (plata que entró)', fmt(r.recaudado), 'in')}
+        ${kpi('Quedaron debiendo', fmt(r.quedoDebiendo), r.quedoDebiendo ? 'out' : '')}${kpi('Pacientes atendidos', r.pacientes + ' · ' + r.ventas + ' trat.')}
+        ${kpi('Ticket promedio', fmt(r.ventas ? r.facturado / r.ventas : 0))}${kpi('Abonos de deudas viejas', fmt(r.abonosViejos))}
+      </div></div>`;
+    h += `<div class="card"><h2 style="font-size:20px">¿Cómo quedó la plata?</h2><table>
+      <tr><td>Recibido de pacientes</td><td class="v in">+${fmt(r.recaudado)}</td></tr>
+      <tr><td>Gastos del consultorio</td><td class="v out">−${fmt(r.gastosConsultorio)}</td></tr>
+      <tr><td>Pagos a proveedores</td><td class="v out">−${fmt(r.pagosProveedores)}</td></tr>
+      <tr><td>Nómina</td><td class="v out">−${fmt(r.nomina)}</td></tr>
+      <tr><td><b>Utilidad del consultorio</b></td><td class="v"><b class="${r.utilidad < 0 ? 'out' : 'in'}">${fmt(r.utilidad)}</b></td></tr>
+      <tr><td>Gastos personales y retiros</td><td class="v out">−${fmt(r.gastosPersonales)}</td></tr>
+      <tr><td><b>Lo que quedó</b></td><td class="v"><b class="${r.quedo < 0 ? 'out' : 'in'}">${fmt(r.quedo)}</b></td></tr>
+      </table><p class="sub" style="margin:10px 0 0">Facturas de proveedores recibidas en el periodo: ${fmt(r.facturasProveedores)} (se cuentan cuando se pagan).</p></div>`;
+    if (serie.length > 1) h += `<div class="card"><h2 style="font-size:20px">${r.porMes ? 'Por mes' : 'Por día'}</h2>
+      <div class="legend"><span><b style="background:var(--gold)"></b>Vendido</span><span><b style="background:var(--ok)"></b>Recibido</span></div>
+      <div class="bars">${serie.map(([k, s]) => `<div class="bar"><span>${r.porMes ? mesTxt(k) : fechaTxt(k).slice(0, 5)}</span>
+        <div><i style="width:${s.vendido / max * 100}%"></i><i class="r" style="width:${s.recibido / max * 100}%"></i></div><span>${fmt(s.vendido)}</span></div>`).join('')}</div></div>`;
+    h += `<div class="card"><h2 style="font-size:20px">Cómo pagaron</h2><table>${lista(r.formas, r.recaudado) || '<tr><td class="sub">Sin pagos</td></tr>'}</table></div>`;
+    h += `<div class="card"><h2 style="font-size:20px">Tratamientos que más se vendieron</h2><table>${lista(r.tratamientos, r.facturado) || '<tr><td class="sub">Sin ventas</td></tr>'}</table></div>`;
+    h += `<div class="card"><h2 style="font-size:20px">Gastos por categoría</h2><table>${lista(r.categorias) || '<tr><td class="sub">Sin gastos</td></tr>'}</table></div>`;
+    $('r-res').innerHTML = h;
+  } catch (err) { $('r-res').innerHTML = '<div class="card">No pude hacer el resumen: ' + esc(err.message) + '</div>'; }
+}
+
+// ---------- caja ----------
+$('c-fecha').onchange = cargarCaja;
+async function cargarCaja() {
+  $('c-body').innerHTML = '<div class="loading">Calculando…</div>';
+  try { pintarCaja(await api('caja', { fecha: $('c-fecha').value })); }
+  catch (err) { $('c-body').innerHTML = '<div class="card">No pude calcular la caja: ' + esc(err.message) + '</div>'; }
+}
+function pintarCaja(c) {
+  const d = c.dia, g = c.general;
+  const noCaja = c.movimientos.filter(m => m.forma && m.forma !== 'Efectivo');
+  let h = '';
+  if (d) {
+    h += `<div class="card"><small class="sub">Efectivo en pesos que debe haber al final del ${fechaTxt(c.fecha)}</small>
+      <div class="big">${fmt(d.final)}</div>
+      <div class="sub" style="margin:0">+ dólares aparte: <b>US$${g.usd}</b></div>
+      <div class="kpis" style="margin-top:12px">
+        <div class="kpi"><small>Arrancó el día con</small><b>${fmt(d.inicial)}</b></div>
+        <div class="kpi"><small>Entró (pacientes)</small><b class="in">+${fmt(d.abonos + d.otrosIngresos)}</b></div>
+        <div class="kpi"><small>Salió (gastos y proveedores)</small><b class="out">−${fmt(d.gastos)}</b></div>
+        <div class="kpi"><small>Salió (nómina y otras)</small><b class="out">−${fmt(d.nomina + d.otrasSalidas)}</b></div>
+      </div>
+      <label for="c-conteo">¿Cuánto contaste en caja?</label>
+      <div class="row"><input id="c-conteo" inputmode="numeric" placeholder="$0" data-money value="${d.conteo != null ? fmt(d.conteo) : ''}">
+      <button class="btn sec" id="c-guardar" style="margin:0">Guardar conteo</button></div>
+      ${d.diferencia != null ? `<div class="hint ${Math.abs(d.diferencia) < 1 ? 'diff-ok' : 'diff-bad'}">${Math.abs(d.diferencia) < 1 ? '✓ La caja cuadra.' : (d.diferencia > 0 ? 'Sobran ' : 'Faltan ') + '<b>' + fmt(Math.abs(d.diferencia)) + '</b>.'}</div>` : ''}
+      </div>`;
+  } else {
+    h += `<div class="card">Ese día no está en el Registro de Caja.</div>`;
+  }
+  h += `<div class="card"><h2 style="font-size:17px">Movimientos del día</h2>`;
+  h += c.movimientos.length ? '<table>' + c.movimientos.map(m =>
+    `<tr><td>${esc(m.tipo)}<small>${esc(m.detalle)} · ${esc(m.forma || 'sin forma de pago')}</small></td><td class="v ${m.entra ? 'in' : 'out'}">${m.entra ? '+' : '−'}${fmt(m.valor)}</td></tr>`).join('') + '</table>'
+    : '<p class="sub">No hay movimientos este día.</p>';
+  if (noCaja.some(m => m.forma !== 'Transferencia'))
+    h += '<div class="hint">Ojo: la hoja cuenta como efectivo todo lo que no sea Transferencia (también Nequi, Tarjeta y Daviplata).</div>';
+  h += '</div>';
+  h += `<div class="card"><h2 style="font-size:17px">A hoy</h2><div class="kpis" style="margin-top:8px">
+    <div class="kpi"><small>Efectivo en pesos</small><b>${fmt(g.saldoPesos)}</b></div>
+    <div class="kpi"><small>Dólares (aparte)</small><b>US$${g.usd}</b><small>equivalen a ${fmt(g.usdPesos)} (TRM ${fmt(g.trm)})</small></div>
+    <div class="kpi" style="grid-column:1/-1;background:var(--gold-soft)"><small>TOTAL CAJA (pesos + dólares)</small><b style="font-size:22px">${fmt(g.total)}</b></div>
+    <div class="kpi"><small>Me deben pacientes</small><b>${fmt(c.meDeben)}</b></div>
+    <div class="kpi"><small>Debo a proveedores</small><b>${fmt(c.deboProveedores)}</b></div></div></div>`;
+  $('c-body').innerHTML = h;
+  const bt = $('c-guardar');
+  if (bt) bt.onclick = async () => {
+    bt.disabled = true; bt.textContent = 'Guardando…';
+    try { pintarCaja(await api('conteo', { fecha: c.fecha, conteo: money($('c-conteo')) })); toast('✓ Conteo guardado.'); }
+    catch (err) { toast('No se guardó: ' + err.message, false); bt.disabled = false; bt.textContent = 'Guardar conteo'; }
+  };
+}
+
+// ---------- inicio ----------
+(async () => {
+  let t = 'venta';
+  try { t = localStorage.getItem('lumen-tab') || 'venta'; } catch (e) {}
+  try {
+    await cargar();
+    $('cargando').classList.add('hidden');
+    tab(t);
+  } catch (err) {
+    $('cargando').innerHTML = 'No pude conectar con el consultorio.<br><small>' + esc(err.message) + '</small><br><br><button class="btn" onclick="location.reload()">Reintentar</button>';
+  }
+})();
+</script>
+</body>
+</html>
