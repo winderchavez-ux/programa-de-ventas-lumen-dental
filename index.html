@@ -110,6 +110,23 @@
   .modal .btn { margin-top: 12px; }
   .loading { text-align: center; color: var(--muted); padding: 40px 0; }
   .hidden { display: none !important; }
+  .solo-pdf { display: none; }
+  /* PDF del resumen: se imprime solo el resumen, en claro */
+  @media print {
+    :root { --bg: #f6f1e7; --card: #ffffff; --ink: #2a221a; --muted: #6d6153; --line: #e0d5c0;
+      --gold: #b08d4f; --gold-ink: #ffffff; --gold-soft: #f0e5cd; --ok: #2f7d4f; --ok-soft: #e4f2e9;
+      --bad: #b3382c; --bad-soft: #f8e3e0; --warn-soft: #f7ecd2; }
+    @page { margin: 12mm; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    html, body { background: #fff; font-size: 13px; }
+    nav, .toast, .modal, .no-pdf, #cargando, section.tab:not(#t-resumen), #t-resumen > .card { display: none !important; }
+    #t-resumen { display: block !important; }
+    main { max-width: none; padding: 12px 0 0; }
+    .solo-pdf { display: block; }
+    .card { break-inside: avoid; page-break-inside: avoid; margin-bottom: 10px; padding: 12px 14px; }
+    .kpis { grid-template-columns: repeat(3, 1fr); }
+    #hdr { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -681,7 +698,18 @@ async function verResumen() {
       `<tr><td>${esc(k)}${v.n ? `<small>${v.n} ${v.n === 1 ? 'vez' : 'veces'}</small>` : ''}</td><td class="v">${fmt(v.valor ?? v)}${total ? `<small>${Math.round((v.valor ?? v) / total * 100)}%</small>` : ''}</td></tr>`).join('');
     const serie = Object.entries(r.serie).sort();
     const max = Math.max(1, ...serie.map(([, s]) => Math.max(s.vendido, s.recibido)));
-    let h = `<div class="card"><small class="sub">Del ${fechaTxt(r.desde)} al ${fechaTxt(r.hasta)}</small>
+    // Lo que debo a proveedores hoy (para el resumen y el PDF)
+    const porProv = {};
+    D.facturasPend.forEach(f => {
+      const p = porProv[f.proveedor] = porProv[f.proveedor] || { n: 0, debe: 0, vencido: 0 };
+      p.n++; p.debe += f.saldo; if (f.vence && f.vence < D.hoy) p.vencido += f.saldo;
+    });
+    const provs = Object.entries(porProv).sort((a, b) => b[1].debe - a[1].debe);
+    const debo = provs.reduce((s, [, p]) => s + p.debe, 0), deboVenc = provs.reduce((s, [, p]) => s + p.vencido, 0);
+    let h = `<button class="btn no-pdf" id="r-pdf" style="margin:0 0 14px">Descargar PDF</button>
+      <div class="solo-pdf" style="margin-bottom:10px"><h2 style="font-size:24px;margin:0">Resumen ejecutivo</h2>
+        <div class="sub">Del ${fechaTxt(r.desde)} al ${fechaTxt(r.hasta)} · generado el ${fechaTxt(D.hoy)}</div></div>
+      <div class="card"><h2 style="font-size:20px">Ventas</h2><small class="sub">Del ${fechaTxt(r.desde)} al ${fechaTxt(r.hasta)}</small>
       <div class="kpis" style="margin-top:10px">
         ${kpi('Vendido (tratamientos)', fmt(r.facturado))}${kpi('Recibido (plata que entró)', fmt(r.recaudado), 'in')}
         ${kpi('Quedaron debiendo', fmt(r.quedoDebiendo), r.quedoDebiendo ? 'out' : '')}${kpi('Pacientes atendidos', r.pacientes + ' · ' + r.ventas + ' trat.')}
@@ -702,8 +730,18 @@ async function verResumen() {
         <div><i style="width:${s.vendido / max * 100}%"></i><i class="r" style="width:${s.recibido / max * 100}%"></i></div><span>${fmt(s.vendido)}</span></div>`).join('')}</div></div>`;
     h += `<div class="card"><h2 style="font-size:20px">Cómo pagaron</h2><table>${lista(r.formas, r.recaudado) || '<tr><td class="sub">Sin pagos</td></tr>'}</table></div>`;
     h += `<div class="card"><h2 style="font-size:20px">Tratamientos que más se vendieron</h2><table>${lista(r.tratamientos, r.facturado) || '<tr><td class="sub">Sin ventas</td></tr>'}</table></div>`;
-    h += `<div class="card"><h2 style="font-size:20px">Gastos por categoría</h2><table>${lista(r.categorias) || '<tr><td class="sub">Sin gastos</td></tr>'}</table></div>`;
+    h += `<div class="card"><h2 style="font-size:20px">Gastos</h2><table>${lista(r.categorias) || '<tr><td class="sub">Sin gastos</td></tr>'}
+      <tr><td><b>Total gastos</b><small>Consultorio ${fmt(r.gastosConsultorio)} · personales ${fmt(r.gastosPersonales)}</small></td><td class="v"><b>${fmt(r.gastosConsultorio + r.gastosPersonales)}</b></td></tr></table></div>`;
+    h += `<div class="card"><h2 style="font-size:20px">Lo que debo a proveedores</h2><small class="sub">A hoy, ${fechaTxt(D.hoy)} (no depende de las fechas del resumen)</small>
+      <table>${provs.map(([k, p]) => `<tr><td>${esc(k)}<small>${p.n} ${p.n === 1 ? 'factura' : 'facturas'}${p.vencido ? ` · <span class="out">vencido ${fmt(p.vencido)}</span>` : ''}</small></td><td class="v">${fmt(p.debe)}</td></tr>`).join('') || '<tr><td class="sub">No debo nada</td></tr>'}
+      <tr><td><b>Total que debo</b>${deboVenc ? `<small class="out">Ya vencido ${fmt(deboVenc)}</small>` : ''}</td><td class="v"><b>${fmt(debo)}</b></td></tr></table></div>`;
     $('r-res').innerHTML = h;
+    $('r-pdf').onclick = () => {
+      const t = document.title;
+      document.title = 'Resumen Lumen Dental ' + r.desde + ' a ' + r.hasta;
+      window.print();
+      setTimeout(() => { document.title = t; }, 1500);
+    };
   } catch (err) { $('r-res').innerHTML = '<div class="card">No pude hacer el resumen: ' + esc(err.message) + '</div>'; }
 }
 
