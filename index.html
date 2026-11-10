@@ -314,6 +314,18 @@
 </div></div>
 
 <script>
+// Version de la pagina. Al abrir, revisa si en internet hay una mas nueva y se recarga sola
+// (el navegador guarda la pagina vieja hasta 10 minutos). CAMBIAR en cada actualizacion.
+const VERSION = '2026-11-09-g';
+(async () => {
+  try {
+    if (!/^https?:/.test(location.protocol)) return;
+    const t = await (await fetch(location.pathname + '?chk=' + Date.now(), { cache: 'no-store' })).text();
+    const m = t.match(/const VERSION = '([^']+)'/);
+    if (m && m[1] !== VERSION && !location.search.includes('v=' + m[1])) location.replace(location.pathname + '?v=' + m[1]);
+  } catch (e) {}
+})();
+
 // URL del backend (Apps Script, aplicación web)
 const API = 'https://script.google.com/macros/s/AKfycbyP8KE9rJ4_8DOBNP_y4P6wEdpXV_9_EPQ08lQU5ycZ5M8o5tLBjO2QSzlucoyPJhnIlw/exec';
 
