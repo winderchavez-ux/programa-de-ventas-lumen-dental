@@ -337,7 +337,7 @@
 <script>
 // Version de la pagina. Al abrir, revisa si en internet hay una mas nueva y se recarga sola
 // (el navegador guarda la pagina vieja hasta 10 minutos). CAMBIAR en cada actualizacion.
-const VERSION = '2026-11-10-d';
+const VERSION = '2026-11-10-e';
 (async () => {
   try {
     if (!/^https?:/.test(location.protocol)) return;
@@ -886,19 +886,22 @@ function pintarCaja(c) {
   let h = '';
   if (d) {
     const bFin = g.bancoAlDia || 0, bIni = bFin - (g.bancoEntroDia || 0) + (g.bancoSalioDia || 0);
+    // El banco nunca se muestra en negativo: si por transferencia salió más de lo que entró, lo que falta sale del efectivo
+    const efDia = d.final + Math.min(bFin, 0);
+    const dif = d.conteo != null ? d.conteo - efDia : null;
     h += `<div class="card"><small class="sub">Caja al final del ${fechaTxt(c.fecha)} (efectivo + banco)</small>
       <div class="big">${fmt(d.final + bFin)}</div>
-      <div class="sub" style="margin:0">Efectivo <b>${fmt(d.final)}</b> · Banco <b>${fmt(bFin)}</b> · + dólares aparte: <b>US$${g.usd}</b></div>
+      <div class="sub" style="margin:0">Efectivo <b>${fmt(efDia)}</b> · Banco <b>${fmt(Math.max(bFin, 0))}</b> · + dólares aparte: <b>US$${g.usd}</b></div>
       <div class="kpis" style="margin-top:12px">
         <div class="kpi"><small>Arrancó el día con</small><b>${fmt(d.inicial + bIni)}</b></div>
         <div class="kpi"><small>Entró (pacientes)</small><b class="in">+${fmt(d.abonos + d.otrosIngresos + (g.bancoEntroDia || 0))}</b></div>
         <div class="kpi"><small>Salió (gastos y proveedores)</small><b class="out">−${fmt(d.gastos + (g.bancoSalioDia || 0))}</b></div>
         <div class="kpi"><small>Salió (nómina y otras)</small><b class="out">−${fmt(d.nomina + d.otrasSalidas)}</b></div>
       </div>
-      <label for="c-conteo">¿Cuánto efectivo contaste? (debe haber ${fmt(d.final)})</label>
+      <label for="c-conteo">¿Cuánto efectivo contaste? (debe haber ${fmt(efDia)})</label>
       <div class="row"><input id="c-conteo" inputmode="numeric" placeholder="$0" data-money value="${d.conteo != null ? fmt(d.conteo) : ''}">
       <button class="btn sec" id="c-guardar" style="margin:0">Guardar conteo</button></div>
-      ${d.diferencia != null ? `<div class="hint ${Math.abs(d.diferencia) < 1 ? 'diff-ok' : 'diff-bad'}">${Math.abs(d.diferencia) < 1 ? '✓ La caja cuadra.' : (d.diferencia > 0 ? 'Sobran ' : 'Faltan ') + '<b>' + fmt(Math.abs(d.diferencia)) + '</b>.'}</div>` : ''}
+      ${dif != null ? `<div class="hint ${Math.abs(dif) < 1 ? 'diff-ok' : 'diff-bad'}">${Math.abs(dif) < 1 ? '✓ La caja cuadra.' : (dif > 0 ? 'Sobran ' : 'Faltan ') + '<b>' + fmt(Math.abs(dif)) + '</b>.'}</div>` : ''}
       </div>`;
   } else {
     h += `<div class="card">Ese día no está en el Registro de Caja.</div>`;
@@ -917,8 +920,8 @@ function pintarCaja(c) {
     h += '<div class="hint">Ojo: solo Transferencia va al banco. Nequi, Tarjeta y Daviplata se cuentan como efectivo.</div>';
   h += '</div>';
   h += `<div class="card"><h2 style="font-size:17px">A hoy</h2><div class="kpis" style="margin-top:8px">
-    <div class="kpi"><small>Efectivo en pesos</small><b>${fmt(g.saldoPesos)}</b></div>
-    <div class="kpi"><small>Banco (transferencias)</small><b>${fmt(g.banco || 0)}</b></div>
+    <div class="kpi"><small>Efectivo en pesos</small><b>${fmt(g.saldoPesos + Math.min(g.banco || 0, 0))}</b></div>
+    <div class="kpi"><small>Banco (transferencias)</small><b>${fmt(Math.max(g.banco || 0, 0))}</b></div>
     <div class="kpi" style="grid-column:1/-1;background:var(--gold-soft)"><small>TOTAL CAJA (efectivo + banco)</small><b style="font-size:22px">${fmt(g.totalPesos != null ? g.totalPesos : g.saldoPesos)}</b></div>
     <div class="kpi" style="grid-column:1/-1"><small>Dólares (aparte)</small><b>US$${g.usd}</b><small>equivalen a ${fmt(g.usdPesos)} (TRM ${fmt(g.trm)})</small></div>
     <div class="kpi" style="grid-column:1/-1;background:var(--gold-soft)"><small>TOTAL CON DÓLARES</small><b style="font-size:22px">${fmt(g.total)}</b></div>
