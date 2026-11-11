@@ -316,7 +316,7 @@
 <script>
 // Version de la pagina. Al abrir, revisa si en internet hay una mas nueva y se recarga sola
 // (el navegador guarda la pagina vieja hasta 10 minutos). CAMBIAR en cada actualizacion.
-const VERSION = '2026-11-09-g';
+const VERSION = '2026-11-10-b';
 (async () => {
   try {
     if (!/^https?:/.test(location.protocol)) return;
@@ -859,6 +859,9 @@ function pintarCaja(c) {
         <div class="kpi"><small>Entró (pacientes)</small><b class="in">+${fmt(d.abonos + d.otrosIngresos)}</b></div>
         <div class="kpi"><small>Salió (gastos y proveedores)</small><b class="out">−${fmt(d.gastos)}</b></div>
         <div class="kpi"><small>Salió (nómina y otras)</small><b class="out">−${fmt(d.nomina + d.otrasSalidas)}</b></div>
+        <div class="kpi"><small>Entró al banco (transferencias)</small><b class="in">+${fmt(g.bancoEntroDia || 0)}</b>${g.bancoSalioDia ? `<small>salió del banco −${fmt(g.bancoSalioDia)}</small>` : ''}</div>
+        <div class="kpi"><small>Banco al final del día</small><b>${fmt(g.bancoAlDia || 0)}</b></div>
+        <div class="kpi" style="grid-column:1/-1;background:var(--gold-soft)"><small>TOTAL DEL DÍA (efectivo + banco)</small><b style="font-size:20px">${fmt(d.final + (g.bancoAlDia || 0))}</b></div>
       </div>
       <label for="c-conteo">¿Cuánto contaste en caja?</label>
       <div class="row"><input id="c-conteo" inputmode="numeric" placeholder="$0" data-money value="${d.conteo != null ? fmt(d.conteo) : ''}">
@@ -873,12 +876,14 @@ function pintarCaja(c) {
     `<tr><td>${esc(m.tipo)}<small>${esc(m.detalle)} · ${esc(m.forma || 'sin forma de pago')}</small></td><td class="v ${m.entra ? 'in' : 'out'}">${m.entra ? '+' : '−'}${fmt(m.valor)}</td></tr>`).join('') + '</table>'
     : '<p class="sub">No hay movimientos este día.</p>';
   if (noCaja.some(m => m.forma !== 'Transferencia'))
-    h += '<div class="hint">Ojo: la hoja cuenta como efectivo todo lo que no sea Transferencia (también Nequi, Tarjeta y Daviplata).</div>';
+    h += '<div class="hint">Ojo: solo Transferencia va al banco. Nequi, Tarjeta y Daviplata se cuentan como efectivo.</div>';
   h += '</div>';
   h += `<div class="card"><h2 style="font-size:17px">A hoy</h2><div class="kpis" style="margin-top:8px">
     <div class="kpi"><small>Efectivo en pesos</small><b>${fmt(g.saldoPesos)}</b></div>
-    <div class="kpi"><small>Dólares (aparte)</small><b>US$${g.usd}</b><small>equivalen a ${fmt(g.usdPesos)} (TRM ${fmt(g.trm)})</small></div>
-    <div class="kpi" style="grid-column:1/-1;background:var(--gold-soft)"><small>TOTAL CAJA (pesos + dólares)</small><b style="font-size:22px">${fmt(g.total)}</b></div>
+    <div class="kpi"><small>Banco (transferencias)</small><b>${fmt(g.banco || 0)}</b></div>
+    <div class="kpi" style="grid-column:1/-1;background:var(--gold-soft)"><small>TOTAL CAJA (efectivo + banco)</small><b style="font-size:22px">${fmt(g.totalPesos != null ? g.totalPesos : g.saldoPesos)}</b></div>
+    <div class="kpi" style="grid-column:1/-1"><small>Dólares (aparte)</small><b>US$${g.usd}</b><small>equivalen a ${fmt(g.usdPesos)} (TRM ${fmt(g.trm)})</small></div>
+    <div class="kpi" style="grid-column:1/-1;background:var(--gold-soft)"><small>TOTAL CON DÓLARES</small><b style="font-size:22px">${fmt(g.total)}</b></div>
     <div class="kpi"><small>Me deben pacientes</small><b>${fmt(c.meDeben)}</b></div>
     <div class="kpi"><small>Debo a proveedores</small><b>${fmt(c.deboProveedores)}</b></div></div></div>`;
   $('c-body').innerHTML = h;
