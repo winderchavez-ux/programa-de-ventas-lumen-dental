@@ -188,12 +188,12 @@
 
   <!-- PROVEEDORES -->
   <section id="t-prov" class="tab hidden">
-    <div class="seg" id="p-seg" style="grid-template-columns:1fr 1fr 1fr"><button data-p="p-debo" class="on">Lo que debo</button><button data-p="p-fact">Llegó factura</button><button data-p="p-pago">Pagar</button></div>
+    <div class="seg" id="p-seg" style="grid-template-columns:1fr 1fr"><button data-p="p-debo" class="on">Lo que debo</button><button data-p="p-fact">Llegó factura</button><button data-p="p-pago">Pagar</button><button data-p="p-nuevo">+ Crear proveedor</button></div>
     <div id="p-debo"></div>
     <div class="card hidden" id="p-fact">
       <h2>Factura de proveedor</h2>
-      <p class="sub">Lo que quedamos debiendo. Toma la foto de la factura.</p>
-      <label>Foto de la factura</label>
+      <p class="sub">Lo que quedamos debiendo. Con foto, o a mano si no mandaron factura.</p>
+      <label>Foto de la factura (opcional)</label>
       <div class="photo">
         <label class="pick" for="f-cam">📷 Tomar foto</label><input id="f-cam" type="file" accept="image/*" capture="environment">
         <label class="pick" for="f-gal">🖼️ Galería</label><input id="f-gal" type="file" accept="image/*">
@@ -203,7 +203,7 @@
       <label for="f-prov">Proveedor</label>
       <select id="f-prov"></select>
       <div class="row">
-        <div><label for="f-num">N° de factura</label><input id="f-num" placeholder="FE0700"></div>
+        <div><label for="f-num">N° de factura</label><input id="f-num" placeholder="Vacío = se crea solo"></div>
         <div><label for="f-valor">Valor</label><input id="f-valor" inputmode="numeric" placeholder="$0" data-money></div>
       </div>
       <label for="f-fecha">Fecha de la factura</label>
@@ -226,6 +226,27 @@
       <label for="pp-notas">Notas (opcional)</label>
       <input id="pp-notas">
       <button class="btn" id="pp-btn">Guardar pago</button>
+    </div>
+    <div class="card hidden" id="p-nuevo">
+      <h2>Crear proveedor</h2>
+      <p class="sub">Se crea una sola vez y después aparece en la lista para facturas y pagos.</p>
+      <label for="np-nombre">Nombre del proveedor</label>
+      <input id="np-nombre" placeholder="Ej. Laboratorio Dental XYZ">
+      <div class="row">
+        <div><label for="np-tipo">Tipo</label>
+          <select id="np-tipo"><option>Laboratorio</option><option>Almacén dental</option><option>Servicios</option><option>Otro</option></select></div>
+        <div><label for="np-plazo">Plazo para pagar (días)</label><input id="np-plazo" inputmode="numeric" placeholder="0 = de contado"></div>
+      </div>
+      <div class="row">
+        <div><label for="np-nit">NIT / Cédula (opcional)</label><input id="np-nit" inputmode="numeric"></div>
+        <div><label for="np-tel">Teléfono (opcional)</label><input id="np-tel" inputmode="tel"></div>
+      </div>
+      <label for="np-contacto">Contacto (opcional)</label>
+      <input id="np-contacto" placeholder="Persona con la que se habla">
+      <label for="np-notas">Notas (opcional)</label>
+      <input id="np-notas">
+      <button class="btn" id="np-btn">Guardar proveedor</button>
+      <div id="np-lista" class="sub" style="margin-top:14px"></div>
     </div>
   </section>
 
@@ -316,7 +337,7 @@
 <script>
 // Version de la pagina. Al abrir, revisa si en internet hay una mas nueva y se recarga sola
 // (el navegador guarda la pagina vieja hasta 10 minutos). CAMBIAR en cada actualizacion.
-const VERSION = '2026-11-10-b';
+const VERSION = '2026-11-10-d';
 (async () => {
   try {
     if (!/^https?:/.test(location.protocol)) return;
@@ -399,6 +420,7 @@ async function cargar() {
     D.servicios.map(s => `<option>${esc(s)}</option>`).join('') + '<option value="__otro">Otro (escribirlo)</option>';
   const provs = '<option value="">Escoge el proveedor</option>' + D.proveedores.map(p => `<option>${esc(p)}</option>`).join('');
   $('f-prov').innerHTML = provs; $('pp-prov').innerHTML = provs;
+  $('np-lista').innerHTML = '<b>Proveedores que ya están creados (' + D.proveedores.length + '):</b><br>' + D.proveedores.map(esc).join(' · ');
   $('g-cat').innerHTML = '<option value="">Escoge la categoría</option>' +
     D.categorias.map(c => `<option value="${esc(c.nombre)}">${esc(c.nombre)}${c.grupo === 'Personal / retiro' ? ' (personal)' : ''}</option>`).join('');
   const quien = {};
@@ -600,10 +622,9 @@ $('f-quitar').onclick = () => { foto = null; $('f-prev').classList.add('hidden')
 $('f-btn').onclick = async () => {
   const d = { fecha: $('f-fecha').value, proveedor: $('f-prov').value, numero: $('f-num').value.trim(), valor: money($('f-valor')), foto };
   if (!d.proveedor) return toast('Escoge el proveedor.', false);
-  if (!d.numero) return toast('Falta el número de factura.', false);
   if (!d.valor) return toast('Falta el valor de la factura.', false);
   const ok = await confirmar('¿Guardo esta factura?', [
-    d.proveedor, 'N° ' + d.numero + ' · ' + fmt(d.valor), 'Fecha ' + fechaTxt(d.fecha), foto ? 'Con foto' : 'Sin foto'
+    d.proveedor, (d.numero ? 'N° ' + d.numero : 'Sin número (se crea solo: SF-…)') + ' · ' + fmt(d.valor), 'Fecha ' + fechaTxt(d.fecha), foto ? 'Con foto' : 'Sin foto'
   ]);
   if (!ok) return;
   await enviar('f-btn', 'factura', d, () => {
@@ -632,6 +653,19 @@ $('pp-btn').onclick = async () => {
 };
 
 // ---------- gasto ----------
+// ---------- crear proveedor ----------
+$('np-btn').onclick = async () => {
+  const d = { nombre: $('np-nombre').value.trim(), tipo: $('np-tipo').value, plazo: Number(String($('np-plazo').value).replace(/\D/g, '')) || 0,
+    nit: $('np-nit').value.trim(), telefono: $('np-tel').value.trim(), contacto: $('np-contacto').value.trim(), notas: $('np-notas').value.trim() };
+  if (!d.nombre) return toast('Falta el nombre del proveedor.', false);
+  if (D.proveedores.some(p => norm(p) === norm(d.nombre))) return toast('Ese proveedor ya existe.', false);
+  const ok = await confirmar('¿Creo este proveedor?', [d.nombre, d.tipo, d.plazo ? 'Plazo para pagar: ' + d.plazo + ' días' : 'De contado (sin plazo)', d.nit && 'NIT / Cédula: ' + d.nit, d.telefono && 'Tel: ' + d.telefono]);
+  if (!ok) return;
+  await enviar('np-btn', 'proveedor', d, () => {
+    ['np-nombre', 'np-plazo', 'np-nit', 'np-tel', 'np-contacto', 'np-notas'].forEach(id => $(id).value = '');
+  });
+};
+
 $('g-btn').onclick = async () => {
   const d = { fecha: $('g-fecha').value, categoria: $('g-cat').value, descripcion: $('g-desc').value.trim(), valor: money($('g-valor')), forma: formaDe('g-forma') };
   if (!d.categoria) return toast('Escoge la categoría.', false);
@@ -851,19 +885,17 @@ function pintarCaja(c) {
   const noCaja = c.movimientos.filter(m => m.forma && m.forma !== 'Efectivo');
   let h = '';
   if (d) {
-    h += `<div class="card"><small class="sub">Efectivo en pesos que debe haber al final del ${fechaTxt(c.fecha)}</small>
-      <div class="big">${fmt(d.final)}</div>
-      <div class="sub" style="margin:0">+ dólares aparte: <b>US$${g.usd}</b></div>
+    const bFin = g.bancoAlDia || 0, bIni = bFin - (g.bancoEntroDia || 0) + (g.bancoSalioDia || 0);
+    h += `<div class="card"><small class="sub">Caja al final del ${fechaTxt(c.fecha)} (efectivo + banco)</small>
+      <div class="big">${fmt(d.final + bFin)}</div>
+      <div class="sub" style="margin:0">Efectivo <b>${fmt(d.final)}</b> · Banco <b>${fmt(bFin)}</b> · + dólares aparte: <b>US$${g.usd}</b></div>
       <div class="kpis" style="margin-top:12px">
-        <div class="kpi"><small>Arrancó el día con</small><b>${fmt(d.inicial)}</b></div>
-        <div class="kpi"><small>Entró (pacientes)</small><b class="in">+${fmt(d.abonos + d.otrosIngresos)}</b></div>
-        <div class="kpi"><small>Salió (gastos y proveedores)</small><b class="out">−${fmt(d.gastos)}</b></div>
+        <div class="kpi"><small>Arrancó el día con</small><b>${fmt(d.inicial + bIni)}</b></div>
+        <div class="kpi"><small>Entró (pacientes)</small><b class="in">+${fmt(d.abonos + d.otrosIngresos + (g.bancoEntroDia || 0))}</b></div>
+        <div class="kpi"><small>Salió (gastos y proveedores)</small><b class="out">−${fmt(d.gastos + (g.bancoSalioDia || 0))}</b></div>
         <div class="kpi"><small>Salió (nómina y otras)</small><b class="out">−${fmt(d.nomina + d.otrasSalidas)}</b></div>
-        <div class="kpi"><small>Entró al banco (transferencias)</small><b class="in">+${fmt(g.bancoEntroDia || 0)}</b>${g.bancoSalioDia ? `<small>salió del banco −${fmt(g.bancoSalioDia)}</small>` : ''}</div>
-        <div class="kpi"><small>Banco al final del día</small><b>${fmt(g.bancoAlDia || 0)}</b></div>
-        <div class="kpi" style="grid-column:1/-1;background:var(--gold-soft)"><small>TOTAL DEL DÍA (efectivo + banco)</small><b style="font-size:20px">${fmt(d.final + (g.bancoAlDia || 0))}</b></div>
       </div>
-      <label for="c-conteo">¿Cuánto contaste en caja?</label>
+      <label for="c-conteo">¿Cuánto efectivo contaste? (debe haber ${fmt(d.final)})</label>
       <div class="row"><input id="c-conteo" inputmode="numeric" placeholder="$0" data-money value="${d.conteo != null ? fmt(d.conteo) : ''}">
       <button class="btn sec" id="c-guardar" style="margin:0">Guardar conteo</button></div>
       ${d.diferencia != null ? `<div class="hint ${Math.abs(d.diferencia) < 1 ? 'diff-ok' : 'diff-bad'}">${Math.abs(d.diferencia) < 1 ? '✓ La caja cuadra.' : (d.diferencia > 0 ? 'Sobran ' : 'Faltan ') + '<b>' + fmt(Math.abs(d.diferencia)) + '</b>.'}</div>` : ''}
@@ -872,7 +904,13 @@ function pintarCaja(c) {
     h += `<div class="card">Ese día no está en el Registro de Caja.</div>`;
   }
   h += `<div class="card"><h2 style="font-size:17px">Movimientos del día</h2>`;
-  h += c.movimientos.length ? '<table>' + c.movimientos.map(m =>
+  // Varios movimientos iguales del mismo paciente (mismo tipo, detalle y forma de pago) se muestran sumados en una sola línea
+  const juntos = [];
+  c.movimientos.forEach(m => {
+    const igual = juntos.find(x => x.tipo === m.tipo && x.detalle === m.detalle && x.forma === m.forma && x.entra === m.entra);
+    if (igual) igual.valor += m.valor; else juntos.push(Object.assign({}, m));
+  });
+  h += juntos.length ? '<table>' + juntos.map(m =>
     `<tr><td>${esc(m.tipo)}<small>${esc(m.detalle)} · ${esc(m.forma || 'sin forma de pago')}</small></td><td class="v ${m.entra ? 'in' : 'out'}">${m.entra ? '+' : '−'}${fmt(m.valor)}</td></tr>`).join('') + '</table>'
     : '<p class="sub">No hay movimientos este día.</p>';
   if (noCaja.some(m => m.forma !== 'Transferencia'))
