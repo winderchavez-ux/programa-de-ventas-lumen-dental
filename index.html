@@ -337,7 +337,7 @@
 <script>
 // Version de la pagina. Al abrir, revisa si en internet hay una mas nueva y se recarga sola
 // (el navegador guarda la pagina vieja hasta 10 minutos). CAMBIAR en cada actualizacion.
-const VERSION = '2026-11-12-a';
+const VERSION = '2026-11-12-b';
 (async () => {
   try {
     if (!/^https?:/.test(location.protocol)) return;
@@ -564,16 +564,18 @@ function pintarDebo() {
         return `<tr><td><b>N° ${esc(f.numero)}</b>
           <small>Fecha: ${fechaTxt(f.fecha)}</small>
           <small class="${venc ? 'out' : ''}">${venc ? 'Venció' : 'Vence'}: ${fechaTxt(f.vence)}${venc ? ' ⚠' : ''}</small></td>
-          <td class="v"><b>${fmt(f.saldo)}</b>${f.saldo < f.valor ? `<small>abonado ${fmt(f.valor - f.saldo)} de ${fmt(f.valor)}</small>` : `<small>valor ${fmt(f.valor)}</small>
-            <small><a href="#" class="out" data-borrar="${esc(p.proveedor)}|${esc(f.numero)}|${f.valor}" style="text-decoration:underline">🗑 Borrar</a></small>`}</td></tr>`;
+          <td class="v"><b>${fmt(f.saldo)}</b>${f.saldo < f.valor ? `<small>abonado ${fmt(f.valor - f.saldo)} de ${fmt(f.valor)}</small>` : `<small>valor ${fmt(f.valor)}</small>`}
+            <small><a href="#" class="out" data-borrar="${esc(p.proveedor)}|${esc(f.numero)}|${f.valor}|${f.valor - f.saldo}" style="text-decoration:underline;display:inline-block;padding:6px 0">🗑 Borrar factura</a></small></td></tr>`;
       }).join('')}</table>
       <button class="btn sec" data-pagar="${esc(p.proveedor)}">Pagar a este proveedor</button></div>`).join('')
     || '<div class="card">No le debes nada a ningún proveedor.</div>';
   $('p-debo').innerHTML = h;
   $('p-debo').querySelectorAll('[data-borrar]').forEach(a => a.onclick = async ev => {
     ev.preventDefault();
-    const [prov, numero, valor] = a.dataset.borrar.split('|');
-    const ok = await confirmar('¿Borrar esta factura?', [prov, 'N° ' + numero + ' · ' + fmt(Number(valor)), 'Se quita de lo que debo. No se puede deshacer.']);
+    const [prov, numero, valor, abonado] = a.dataset.borrar.split('|');
+    const ok = await confirmar('¿Borrar esta factura?', [prov, 'N° ' + numero + ' · ' + fmt(Number(valor)),
+      Number(abonado) > 0 ? 'Tiene abonos por ' + fmt(Number(abonado)) + ': también se borran los pagos hechos a esta factura.' : '',
+      'Se quita de lo que debo. No se puede deshacer.']);
     if (!ok) return;
     try {
       const r = await api('borrarFactura', { proveedor: prov, numero });
