@@ -337,7 +337,7 @@
 <script>
 // Version de la pagina. Al abrir, revisa si en internet hay una mas nueva y se recarga sola
 // (el navegador guarda la pagina vieja hasta 10 minutos). CAMBIAR en cada actualizacion.
-const VERSION = '2026-11-12-b';
+const VERSION = '2026-11-12-c';
 (async () => {
   try {
     if (!/^https?:/.test(location.protocol)) return;
@@ -420,7 +420,19 @@ async function cargar() {
     D.servicios.map(s => `<option>${esc(s)}</option>`).join('') + '<option value="__otro">Otro (escribirlo)</option>';
   const provs = '<option value="">Escoge el proveedor</option>' + D.proveedores.map(p => `<option>${esc(p)}</option>`).join('');
   $('f-prov').innerHTML = provs; $('pp-prov').innerHTML = provs;
-  $('np-lista').innerHTML = '<b>Proveedores que ya están creados (' + D.proveedores.length + '):</b><br>' + D.proveedores.map(esc).join(' · ');
+  $('np-lista').innerHTML = '<b>Proveedores que ya están creados (' + D.proveedores.length + '):</b>' +
+    D.proveedores.map(p => `<div style="display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)"><span>${esc(p)}</span><a href="#" class="out" data-borrarprov="${esc(p)}" style="text-decoration:underline;white-space:nowrap">🗑 Borrar</a></div>`).join('');
+  $('np-lista').querySelectorAll('[data-borrarprov]').forEach(a => a.onclick = async ev => {
+    ev.preventDefault();
+    const nombre = a.dataset.borrarprov;
+    const ok = await confirmar('¿Borrar este proveedor?', [nombre, 'Solo se puede si no tiene facturas ni pagos.', 'No se puede deshacer.']);
+    if (!ok) return;
+    try {
+      const r = await api('borrarProveedor', { nombre });
+      toast('✓ ' + r.mensaje);
+      cargar().catch(() => {});
+    } catch (err) { toast('No se borró: ' + err.message, false); }
+  });
   $('g-cat').innerHTML = '<option value="">Escoge la categoría</option>' +
     D.categorias.map(c => `<option value="${esc(c.nombre)}">${esc(c.nombre)}${c.grupo === 'Personal / retiro' ? ' (personal)' : ''}</option>`).join('');
   const quien = {};
@@ -573,15 +585,33 @@ function pintarDebo() {
   $('p-debo').querySelectorAll('[data-borrar]').forEach(a => a.onclick = async ev => {
     ev.preventDefault();
     const [prov, numero, valor, abonado] = a.dataset.borrar.split('|');
+    const totalAhora = D.facturasPend.reduce((s, x) => s + x.saldo, 0);
+    const saldoFact = Number(valor) - Number(abonado);
     const ok = await confirmar('¿Borrar esta factura?', [prov, 'N° ' + numero + ' · ' + fmt(Number(valor)),
       Number(abonado) > 0 ? 'Tiene abonos por ' + fmt(Number(abonado)) + ': también se borran los pagos hechos a esta factura.' : '',
-      'Se quita de lo que debo. No se puede deshacer.']);
+      '⚠ Si la borras, cambia el total de lo que debes: de ' + fmt(totalAhora) + ' a ' + fmt(totalAhora - saldoFact) + '.',
+      'No se puede deshacer.']);
     if (!ok) return;
     try {
       const r = await api('borrarFactura', { proveedor: prov, numero });
       toast('✓ ' + r.mensaje);
       cargar().catch(() => {});
     } catch (err) { toast('No se borró: ' + err.message, false); }
+  });
+  $('p-debo').querySelectorAll('[data-corregir]').forEach(a => a.onclick = async ev => {
+    ev.preventDefault();
+    const [prov, numero, valor] = a.dataset.corregir.split('|');
+    const txt = prompt('Valor correcto de la factura ' + numero + ' (' + prov + '). Ahora dice ' + fmt(Number(valor)) + ':', valor);
+    if (txt === null) return;
+    const nuevo = Number(String(txt).replace(/[^\d]/g, ''));
+    if (!nuevo) return toast('Escribe un valor válido.', false);
+    const ok = await confirmar('¿Corregir el valor?', [prov, 'N° ' + numero, 'De ' + fmt(Number(valor)) + ' a ' + fmt(nuevo)]);
+    if (!ok) return;
+    try {
+      const r = await api('editarFactura', { proveedor: prov, numero, valor: nuevo });
+      toast('✓ ' + r.mensaje);
+      cargar().catch(() => {});
+    } catch (err) { toast('No se corrigió: ' + err.message, false); }
   });
   $('p-debo').querySelectorAll('[data-pagar]').forEach(b => b.onclick = () => {
     $('p-seg').querySelector('[data-p="p-pago"]').click();
